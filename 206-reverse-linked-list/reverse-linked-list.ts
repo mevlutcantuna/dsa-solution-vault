@@ -10,6 +10,8 @@
  * }
  */
 
+
+// Two Pointers Solution Time: O(n) Space: O(1)
 function reverseList(head: ListNode | null): ListNode | null {
     let prev = null;
     let curr = head;
@@ -21,5 +23,20 @@ function reverseList(head: ListNode | null): ListNode | null {
         curr = next;
     }
 
+
     return prev;
 };
+
+// Recursive Solution Time: O(n) Space: O(n)
+function reverseList2(head: ListNode | null): ListNode | null {
+    if (head === null) return null;
+
+    let newHead = head;
+    if(head.next){
+        newHead = reverseList2(head.next);
+        head.next.next = head;
+    }
+    head.next = null
+
+    return newHead;
+}
