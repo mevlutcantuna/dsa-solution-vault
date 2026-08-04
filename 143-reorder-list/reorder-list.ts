@@ -49,7 +49,6 @@ function reorderList(head: ListNode | null): void {
 
     second = prev;
 
-
     // merge
     let first = head;
     while(second){
