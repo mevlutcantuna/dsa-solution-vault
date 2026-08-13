@@ -1,4 +1,9 @@
 function checkSubarraySum(nums: number[], k: number): boolean {
+    if (nums.length < 2) {
+        return false;
+    }
+
+
     let total = 0;
     let remainder = new Map();
     remainder.set(0, -1)
@@ -7,9 +12,9 @@ function checkSubarraySum(nums: number[], k: number): boolean {
     for (let i = 0; i < nums.length; i++) {
         total += nums[i];
         let r = total % k;
-        if(!remainder.has(r)){
+        if (!remainder.has(r)) {
             remainder.set(r, i)
-        }else if(i - remainder.get(r) >= 2){
+        } else if (i - remainder.get(r) >= 2) {
             return true
         }
     }
