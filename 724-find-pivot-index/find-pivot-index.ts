@@ -1,22 +1,16 @@
 function pivotIndex(nums: number[]): number {
-    let prefix = 0;
-    let prefixTemp = []
+    let totalSum = 0;
+    for (let i = 0; i < nums.length; i++) totalSum += nums[i];
 
-    for(let i = 0; i < nums.length; i++){
-        prefix += nums[i];
-        prefixTemp.push(prefix);
-    }
-    
-    let suffix = 0;
-    let suffixTemp = []
+    let leftSum = 0;
+    for (let i = 0; i < nums.length; i++) {
+        const rightSum = totalSum - leftSum - nums[i];
 
-    for(let i = nums.length - 1; i >= 0; i--){
-        suffix += nums[i];
-        suffixTemp.unshift(suffix);
-    }
+        if (leftSum === rightSum) {
+            return i;
+        }
 
-    for(let i = 0; i < prefixTemp.length; i++){
-        if(prefixTemp[i] === suffixTemp[i]) return i;
+        leftSum += nums[i];
     }
 
     return -1;
